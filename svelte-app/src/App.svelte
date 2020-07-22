@@ -19,7 +19,7 @@
 
   <button on:click={handleClick}>update awesomeness level</button>
 
-  <input type='text' on:input={handleInput} />
+  <input type='text' on:input={handleInput} value={StateOfAwesomeness} />
 
 </main>
 
