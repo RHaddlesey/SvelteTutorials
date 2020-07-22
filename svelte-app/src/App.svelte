@@ -28,6 +28,11 @@
   <!-- this adds a key into the array -->
   <div>
     <h4>{person.name}</h4>
+    {#if person.beltColour === "black"}
+    <p>
+      <strong>Master NINJA!</strong>
+    </p>
+    {/if}
     <p>{person.age} years old, {person.beltColour} belt.</p>
     <button on:click={() => handleClick(person.id)}>delete</button>
   </div>
