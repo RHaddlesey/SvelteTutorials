@@ -5,7 +5,23 @@
   const handleClick = () => {
     StateOfAwesomeness = "super";
   };
+
+  const handleInput = (e) => {
+    StateOfAwesomeness = e.target.value
+  };
 </script>
+
+
+
+<main>
+  <h1>Hello {name}!</h1>
+  <p>Level of awesomeness = {StateOfAwesomeness}</p>
+
+  <button on:click={handleClick}>update awesomeness level</button>
+
+  <input type='text' on:input={handleInput} />
+
+</main>
 
 <style>
   main {
@@ -28,11 +44,3 @@
     }
   }
 </style>
-
-<main>
-  <h1>Hello {name}!</h1>
-  <p>Level of awesomeness = {StateOfAwesomeness}</p>
-
-  <button on:click={handleClick}>update awesomeness level</button>
-
-</main>
