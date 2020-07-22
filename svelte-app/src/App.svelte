@@ -5,6 +5,16 @@
   let colourOfAwesomeness = "blue";
 
   $: fullName = `${firstName} ${lastName}`;
+  // this is a reactive value. If either of the values are changed in the text input, they will update in the DOM
+
+  $: {
+    console.log(colourOfAwesomeness)
+    console.log(StateOfAwesomeness)
+    console.log(fullName)
+  };
+  // reactive statement - if anything changes, the entire code block will run
+
+
 
   const handleClick = () => {
     StateOfAwesomeness = "super";
