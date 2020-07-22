@@ -11,17 +11,7 @@
     people = people.filter((person) => person.id != id)
     // this checks if the person is the person = true/false. If it is true, it only returns that person... so we have to say if it is not true !=. That way, the people that do not = people will be returned instead. It is a bit backward, but makes sense because it is a truthy statement.
   }
-
-  let num = 5;
 </script>
-
-{#if num > 20}
-<p>Greater than 20!</p>
-{:else if num > 5}
-<p>Greater than 5!</p>
-{:else}
-<p>Not greater than 5!</p>
-{/if}
 
 <main>
   {#each people as person (person.id)} 
