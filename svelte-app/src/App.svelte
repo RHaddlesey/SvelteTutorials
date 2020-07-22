@@ -1,50 +1,23 @@
 <script>
-  let firstName = "Richie";
-  let lastName = "H";
-  let StateOfAwesomeness = "Very";
-  let colourOfAwesomeness = "blue";
-
-  $: fullName = `${firstName} ${lastName}`;
-  // this is a reactive value. If either of the values are changed in the text input, they will update in the DOM
-
-  $: {
-    console.log(colourOfAwesomeness)
-    console.log(StateOfAwesomeness)
-    console.log(fullName)
-  };
-  // reactive statement - if anything changes, the entire code block will run
-
-
-
-  const handleClick = () => {
-    StateOfAwesomeness = "super";
-    colourOfAwesomeness = "green";
-  };
-
-  const handleInput = (e) => {
-    StateOfAwesomeness = e.target.value
-  };
-
-  const handleInput2 = (e) => {
-    colourOfAwesomeness = e.target.value
-  };
+  let people = [
+    { name: "Richie", beltColour: "black", age: 50, id: 1 },
+    { name: "Jeff", beltColour: "orange", age: 35, id: 2 },
+    { name: "Veronica", beltColour: "brown", age: 45, id: 3 },
+  ];
 </script>
 
-
-
 <main>
-  <h1>{fullName}</h1>
-  <p>Level of awesomeness = {StateOfAwesomeness}</p>
-  <input type="text" bind:value={firstName} />
-  <input type="text" bind:value={lastName} />
-  <p style="color: {colourOfAwesomeness}">Colour of awesomeness = {colourOfAwesomeness}</p>
-
-  <!-- <input type='text' on:input={handleInput} value={StateOfAwesomeness} /> -->
-
-  <input type="text" bind:value={StateOfAwesomeness} />
-  <input type="text" bind:value={colourOfAwesomeness} />
-
+  {#each people as person (person.id)} 
+  <!-- this adds a key into the array -->
+  <div>
+    <h4>{person.name}</h4>
+    <p>{person.age} years old, {person.beltColour} belt.</p>
+  </div>
+  {:else}
+  <p>There are no data to show...</p>
+  {/each}
 </main>
+<!-- the else is if there are no data, then output this. So if the array is empty, we still get an output to let us know it is empty! -->
 
 <style>
   main {
@@ -54,16 +27,10 @@
     margin: 0 auto;
   }
 
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
   @media (min-width: 640px) {
     main {
       max-width: none;
     }
   }
 </style>
+
