@@ -1,6 +1,9 @@
 <script>
+  export let message = 'default value';
+  // this export let is defined in the main app inside the Modal component call. It is passed here as a prop so that this component can be reused.
+  // default value can be anything you want to show if no props are passed in.
   let showModal = true;
-  let isPromo = true;
+  export let isPromo = false;
 </script>
 
 <style>
@@ -27,7 +30,7 @@
 {#if showModal}
 <div class="backdrop" class:promo={isPromo}>
   <div class="modal">
-    <p>Sign Up for offeres my dudes!</p>
+    <p>{message}</p>
   </div>
 
 </div>

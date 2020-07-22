@@ -25,7 +25,7 @@
 <p>Not greater than 5!</p>
 {/if} -->
 
-<Modal />
+<Modal message="Hey my dudes, I am a prop!" isPromo={true} />
 <main>
   {#each people as person (person.id)} 
   <!-- this adds a key into the array -->
