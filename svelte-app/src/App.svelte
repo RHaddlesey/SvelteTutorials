@@ -1,6 +1,12 @@
 <script>
   import Modal from './Modal.svelte';
 
+  let showModal = false;
+
+  const toggleModal = () => {
+    showModal = !showModal;
+  }
+
   let people = [
     { name: "Richie", beltColour: "black", age: 50, id: 1 },
     { name: "Jeff", beltColour: "orange", age: 35, id: 2 },
@@ -25,8 +31,9 @@
 <p>Not greater than 5!</p>
 {/if} -->
 
-<Modal message="Hey my dudes, I am a prop!" isPromo={true} />
+<Modal message="Hey my dudes, I am a prop!" {showModal} on:click={toggleModal} />
 <main>
+  <button on:click={toggleModal}>Open modal</button>
   {#each people as person (person.id)} 
   <!-- this adds a key into the array -->
   <div>
