@@ -1,6 +1,4 @@
 <script>
-  // this export let is defined in the main app inside the Modal component call. It is passed here as a prop so that this component can be reused.
-  // default value can be anything you want to show if no props are passed in.
   export let showModal = false;
   export let isPromo = false;
 </script>
@@ -30,10 +28,8 @@
 <div class="backdrop" class:promo={isPromo} on:click|self>
   <div class="modal">
     <slot></slot>
-    <!-- this will will for child content added in the App to this component  -->
   </div>
 
 </div>
 {/if}
-<!-- by not defining the on:click in the showModal above, it will create an EVENT FORWARDING callback to the App component -->
-<!-- on:click|self = self is an event modifier. Without it, clicking on both the back ground and the modal would clode it, we wanted it to only close if you click the background and not the modal. So the event modifier is on the background <div> and so it only works on that div now -->
+
