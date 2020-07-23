@@ -28,7 +28,7 @@
 </style>
 
 {#if showModal}
-<div class="backdrop" class:promo={isPromo} on:click>
+<div class="backdrop" class:promo={isPromo} on:click|self>
   <div class="modal">
     <p>{message}</p>
   </div>
@@ -36,3 +36,4 @@
 </div>
 {/if}
 <!-- by not defining the on:click in the showModal above, it will create an EVENT FORWARDING callback to the App component -->
+<!-- on:click|self = self is an event modifier. Without it, clicking on both the back ground and the modal would clode it, we wanted it to only close if you click the background and not the modal. So the event modifier is on the background <div> and so it only works on that div now -->
