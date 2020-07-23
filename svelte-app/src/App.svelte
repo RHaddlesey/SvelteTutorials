@@ -17,7 +17,12 @@
     people = people.filter((person) => person.id != id);
   };
 
-  let num = 5;
+  const addPerson = (e) => {
+    // console.log(e.detail)
+    const person = e.detail;
+    people = [person, ...people];
+    showModal = false;
+  };
 </script>
 
 <style>
@@ -36,7 +41,7 @@
 </style>
 
 <Modal {showModal} on:click={toggleModal}>
-  <AddPersonForm />
+  <AddPersonForm on:addPerson={addPerson} />
 </Modal>
 
 <main>
@@ -50,9 +55,21 @@
         </p>
       {/if}
       <p>{person.age} years old, {person.beltColour} belt.</p>
+      {#if person.skills}
+        <div class="skills">
+          <p>skills include:</p>
+          <h5>
+            {#each person.skills as skill}
+              {" "}{skill}{", "}
+            {/each}
+
+          </h5>
+        </div>
+      {/if}
       <button on:click={() => handleClick(person.id)}>delete</button>
     </div>
   {:else}
     <p>There are no data to show...</p>
   {/each}
+
 </main>
