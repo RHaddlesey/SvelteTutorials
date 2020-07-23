@@ -31,7 +31,15 @@
 <p>Not greater than 5!</p>
 {/if} -->
 
-<Modal message="Hey my dudes, I am a prop!" {showModal} on:click={toggleModal} />
+<Modal {showModal} on:click={toggleModal}>
+  <h3>Add a new person</h3>
+  <form>
+    <input type="text" placeholder="name">
+    <input type="text" placeholder="belt colour">
+    <button>Add person</button>
+  </form>
+</Modal>
+<!-- here we are using svelte slots to pass this data back to the child -->
 <main>
   <button on:click={toggleModal}>Open modal</button>
   {#each people as person (person.id)} 
