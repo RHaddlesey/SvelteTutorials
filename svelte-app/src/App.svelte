@@ -57,13 +57,11 @@
       <p>{person.age} years old, {person.beltColour} belt.</p>
       {#if person.skills}
         <div class="skills">
-          <p>skills include:</p>
-          <h5>
+          <h3>skills include:</h3>
+       
             {#each person.skills as skill}
-              {" "}{skill}{", "}
+              <p>{" "}{skill}{", "}</p>
             {/each}
-
-          </h5>
         </div>
       {/if}
       <button on:click={() => handleClick(person.id)}>delete</button>
