@@ -15,6 +15,11 @@ import Tabs from "./shared/Tabs.svelte";
 <Header />
 <main>
 <Tabs {activeItem} {items} on:tabChange={tabChange}/>
+{#if activeItem === 'Current Polls'}
+<p>Poll list here</p>
+{:else if activeItem === 'Add New Poll'}
+<p>new poll goes here</p>
+{/if}
 	
 </main>
 <Footer/>
