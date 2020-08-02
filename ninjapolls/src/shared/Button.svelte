@@ -13,29 +13,29 @@
     font-weight: bold;
     box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
   }
-  .primary{
+  .primary {
     background: #d91b42;
     color: white;
   }
-  .secondary{
+  .secondary {
     background: #45c496;
     color: white;
   }
-  .flat{
+  .flat {
     box-shadow: none;
   }
-  .primary.inverse{
+  .primary.inverse {
     color: #d91b42;
     background: white;
     border: 2px solid #d91b42;
   }
-  .secondary.inverse{
+  .secondary.inverse {
     color: #45c496;
     background: white;
-    border:2px solid #45c496;
+    border: 2px solid #45c496;
   }
 </style>
 
-<button class={type} class:flat={flat} class:inverse={inverse}>
+<button class={type} class:flat class:inverse>
   <slot />
 </button>
