@@ -33,7 +33,7 @@
 
   const handleVote = (e) => {
     const { id, option } = e.detail;
-    console.log(e.detail);
+    // console.log(e.detail);
 
     let copiedPolls = [...polls];
     let upvotedPoll = copiedPolls.find((poll) => poll.id == id);
