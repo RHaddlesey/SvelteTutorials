@@ -1,18 +1,34 @@
 <script>
   import Card from "../shared/Card.svelte";
-  import { createEventDispatcher } from "svelte";
+  import PollStore from "../stores/PollStore";
 
-  const dispatch = createEventDispatcher();
+  // import { createEventDispatcher } from "svelte";
+  // BEFORE STORE
+  // const dispatch = createEventDispatcher();
   export let poll;
 
   //  reactive value
   $: totalVotes = poll.votesA + poll.votesB;
-  $: percentA = Math.floor(100 / totalVotes * poll.votesA)
-  $: percentB = Math.floor(100 / totalVotes * poll.votesB)
+  $: percentA = Math.floor((100 / totalVotes) * poll.votesA);
+  $: percentB = Math.floor((100 / totalVotes) * poll.votesB);
 
   // handeling votes
   const handleVote = (option, id) => {
-    dispatch("vote", { option, id });
+    // dispatch("vote", { option, id });
+
+    PollStore.update((currentPolls) => {
+      let copiedPolls = [...currentPolls];
+      let upvotedPoll = copiedPolls.find((poll) => poll.id == id);
+
+      if (option === "a") {
+        upvotedPoll.votesA++;
+      }
+      if (option === "b") {
+        upvotedPoll.votesB++;
+      }
+
+      return copiedPolls;
+    });
   };
 </script>
 
@@ -40,17 +56,17 @@
     display: inline-block;
     padding: 10px 20px;
   }
-  .percent{
+  .percent {
     height: 100%;
     position: absolute;
     box-sizing: border-box;
   }
-  .percent-a{
-    background: rgba(217,27,66,0.5);
+  .percent-a {
+    background: rgba(217, 27, 66, 0.5);
     border-left: 4px solid #d91b42;
   }
-  .percent-b{
-    background: rgba(69,196,150,0.5);
+  .percent-b {
+    background: rgba(69, 196, 150, 0.5);
     border-left: 4px solid #45c496;
   }
 </style>
@@ -60,11 +76,11 @@
     <h3>{poll.question}</h3>
     <p>Total votes: {totalVotes}</p>
     <div class="answer" on:click={() => handleVote('a', poll.id)}>
-      <div class="percent percent-a" style="width: {percentA}%"/>
+      <div class="percent percent-a" style="width: {percentA}%" />
       <span>{poll.answerA} ({poll.votesA})</span>
     </div>
     <div class="answer" on:click={() => handleVote('b', poll.id)}>
-      <div class="percent percent-b" style="width: {percentB}%"/>
+      <div class="percent percent-b" style="width: {percentB}%" />
       <span>{poll.answerB} ({poll.votesB})</span>
     </div>
   </div>

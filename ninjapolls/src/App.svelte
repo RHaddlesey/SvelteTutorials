@@ -12,41 +12,31 @@
     activeItem = e.detail;
   };
 
-  // polls
-  let polls = [
-    {
-      id: 2,
-      question: "Python or JavaScript?",
-      answerA: "Python",
-      answerB: "JavaScript",
-      votesA: 9,
-      votesB: 15,
-    },
-  ];
-
   const handleAdd = (e) => {
-    const poll = e.detail;
-    polls = [poll, ...polls];
-    // console.log(polls);
+    // const poll = e.detail;
+    // polls = [poll, ...polls];
+    // this was before we set up a store
+
     activeItem = "Current Polls";
   };
 
-  const handleVote = (e) => {
-    const { id, option } = e.detail;
-    // console.log(e.detail);
+  // const handleVote = (e) => {
+  //   const { id, option } = e.detail;
+  //   // console.log(e.detail);
 
-    let copiedPolls = [...polls];
-    let upvotedPoll = copiedPolls.find((poll) => poll.id == id);
+  //   let copiedPolls = [...polls];
+  //   let upvotedPoll = copiedPolls.find((poll) => poll.id == id);
 
-    if (option === "a") {
-      upvotedPoll.votesA++;
-    }
-    if (option === "b") {
-      upvotedPoll.votesB++;
-    }
+  //   if (option === "a") {
+  //     upvotedPoll.votesA++;
+  //   }
+  //   if (option === "b") {
+  //     upvotedPoll.votesB++;
+  //   }
 
-    polls = copiedPolls;
-  };
+  //   polls = copiedPolls;
+  // };
+  // BEFORE WE ADDED A STORE
 </script>
 
 <style>
@@ -60,7 +50,8 @@
 <main>
   <Tabs {activeItem} {items} on:tabChange={tabChange} />
   {#if activeItem === 'Current Polls'}
-    <PollList {polls} on:vote={handleVote} />
+  <PollList />
+    <!-- <PollList on:vote={handleVote} /> Now not needed after we connected to store -->
     <!-- because we forwarded the custom event -on:vote- from PollDetails through to PollList = we can listen for it here now -->
   {:else if activeItem === 'Add New Poll'}
     <CreatePollForm on:add={handleAdd} />
